@@ -22,3 +22,28 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+cal = calendar.TextCalendar(calendar.SUNDAY)
+
+
+def create_calendar(calendar_input):
+    try:
+        now = datetime.now()
+        if (len(calendar_input) not in range(3)):
+            print("Please type the date in the following format: MM YYYY")
+            return
+        if len(calendar_input) == 0:
+            print(cal.formatmonth(now.year, now.month))
+        elif len(calendar_input) == 1:
+            print(cal.formatmonth(now.year, int(calendar_input[0])))
+        elif len(calendar_input) == 2:
+            print(cal.formatmonth(
+                int(calendar_input[1]), int(calendar_input[0])))
+    except Exception as e:
+        print(f'Error: {e}')
+        print("Please type the date in the following format: MM YYYY")
+        exit()
+
+
+calendar_input = sys.argv[1:]
+create_calendar(calendar_input)
